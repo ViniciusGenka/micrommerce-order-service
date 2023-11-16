@@ -29,9 +29,9 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     @PostMapping
-    public ResponseEntity<Void> placeOrder(@RequestBody PlaceOrderInput placeOrderInput) {
-        this.placeOrderUseCase.execute(placeOrderInput);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<OrderDTO> placeOrder(@RequestBody PlaceOrderInput placeOrderInput) {
+        OrderDTO order = this.placeOrderUseCase.execute(placeOrderInput);
+        return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
     @Override

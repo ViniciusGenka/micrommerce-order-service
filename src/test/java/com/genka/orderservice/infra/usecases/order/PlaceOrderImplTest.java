@@ -10,6 +10,7 @@ import com.genka.orderservice.domain.entities.order.Order;
 import com.genka.orderservice.domain.entities.order.OrderItem;
 import com.genka.orderservice.domain.services.DecrementInventoryStockService;
 import com.genka.orderservice.domain.services.ValidateOrderItemAvailabilitiesService;
+import com.genka.orderservice.infra.mappers.OrderMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +35,8 @@ class PlaceOrderImplTest {
     private DecrementInventoryStockService decrementInventoryStockServiceMock;
     @Mock
     private PublishOrderPlacedEventService publishOrderPlacedEventServiceMock;
+    @Mock
+    private OrderMapper orderMapperMock;
     @InjectMocks
     private PlaceOrderImpl sut;
 
