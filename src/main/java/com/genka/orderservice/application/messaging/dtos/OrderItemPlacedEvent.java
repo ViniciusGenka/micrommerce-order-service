@@ -17,9 +17,11 @@ public class OrderItemPlacedEvent {
     Integer quantity;
     String name;
 
-    public OrderItemPlacedEvent(OrderItem orderItem) {
-        this.productId = orderItem.getProductId();
-        this.quantity = orderItem.getQuantity();
-        this.name = orderItem.getName();
+    public static OrderItemPlacedEvent mapFromEntity(OrderItem orderItem) {
+        return OrderItemPlacedEvent.builder()
+                .productId(orderItem.getProductId())
+                .quantity(orderItem.getQuantity())
+                .name(orderItem.getName())
+                .build();
     }
 }

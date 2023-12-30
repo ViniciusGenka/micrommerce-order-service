@@ -23,12 +23,7 @@ public class PublishOrderPlacedEventServiceImpl implements PublishOrderPlacedEve
     @Override
     public void execute(Order order) {
         try {
-            OrderPlacedEvent orderPlacedEvent = OrderPlacedEvent.builder()
-                    .orderId(order.getId())
-                    .orderPrice(order.getPrice())
-                    .orderItems(order.getItems().stream().map(OrderItemPlacedEvent::new).toList())
-                    .buyerEmailAddress(order.getBuyerEmailAddress())
-                    .build();
+            OrderPlacedEvent orderPlacedEvent = OrderPlacedEvent.mapFromEntity(order);
             this.messagePublisher.sendMessage(
                     "order_placed",
                     objectMapper.writeValueAsString(orderPlacedEvent)
