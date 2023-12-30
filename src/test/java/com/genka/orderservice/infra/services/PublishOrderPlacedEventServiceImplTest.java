@@ -51,7 +51,7 @@ class PublishOrderPlacedEventServiceImplTest {
         OrderPlacedEvent expectedOrderPlacedEvent = OrderPlacedEvent.builder()
                 .orderId(placedOrder.getId())
                 .orderPrice(placedOrder.getPrice())
-                .orderItems(placedOrder.getItems().stream().map(OrderItemPlacedEvent::new).toList())
+                .orderItems(placedOrder.getItems().stream().map(OrderItemPlacedEvent::mapFromEntity).toList())
                 .buyerEmailAddress(placedOrder.getBuyerEmailAddress())
                 .build();
         sut.execute(placedOrder);
@@ -81,7 +81,7 @@ class PublishOrderPlacedEventServiceImplTest {
         OrderPlacedEvent expectedOrderPlacedEvent = OrderPlacedEvent.builder()
                 .orderId(placedOrder.getId())
                 .orderPrice(placedOrder.getPrice())
-                .orderItems(placedOrder.getItems().stream().map(OrderItemPlacedEvent::new).toList())
+                .orderItems(placedOrder.getItems().stream().map(OrderItemPlacedEvent::mapFromEntity).toList())
                 .buyerEmailAddress(placedOrder.getBuyerEmailAddress())
                 .build();
         when(objectMapperMock.writeValueAsString(expectedOrderPlacedEvent)).thenThrow(JsonProcessingException.class);
