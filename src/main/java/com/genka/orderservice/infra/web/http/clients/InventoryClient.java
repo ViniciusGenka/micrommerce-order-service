@@ -13,10 +13,10 @@ import java.util.List;
 
 @FeignClient(name = "inventory-service")
 public interface InventoryClient {
-    @PostMapping(value = "/inventories/availabilities", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/inventories/availabilities")
     ResponseEntity<List<OrderItemAvailability>> getOrderItemAvailabilities(@RequestBody GetInventoryAvailabilitiesRequest getInventoryAvailabilitiesRequest);
 
-    @PostMapping(value = "/inventories/stocks/decrement", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/inventories/stocks/decrement")
     ResponseEntity<Void> decrementInventoryStocks(@RequestBody DecrementInventoryStocksRequest decrementInventoryStocksRequest);
 }
 
